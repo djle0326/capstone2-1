@@ -1,7 +1,7 @@
-package capstone.spring.service;
+package capstone.spring.notice.service;
 
-import capstone.spring.entity.Board;
-import capstone.spring.repository.BoardRepository;
+import capstone.spring.notice.entity.Board;
+import capstone.spring.notice.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.util.List;
 import java.util.UUID;
 
 @Service

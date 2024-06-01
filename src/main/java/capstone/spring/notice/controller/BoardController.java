@@ -1,8 +1,7 @@
-package capstone.spring.controller;
+package capstone.spring.notice.controller;
 
-import capstone.spring.entity.Board;
-import capstone.spring.service.BoardService;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import capstone.spring.notice.entity.Board;
+import capstone.spring.notice.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,4 +1,4 @@
-package capstone.spring.entity;
+package capstone.spring.notice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

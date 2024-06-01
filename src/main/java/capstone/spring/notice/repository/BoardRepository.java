@@ -1,6 +1,6 @@
-package capstone.spring.repository;
+package capstone.spring.notice.repository;
 
-import capstone.spring.entity.Board;
+import capstone.spring.notice.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
