@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
-    <link rel="stylesheet" href="2.css">
-    <link rel="stylesheet" href="topbot.css">
-    <script defer src="2.js"></script>
+    <link rel="stylesheet" th:href="@{/css/notice.css}">
+    <link rel="stylesheet" th:href="@{/css/topbot.css}">
+    <!--    <script defer th:src="@{/js/notice.js/}"></script>-->
 </head>
 <body>
     <header>
@@ -18,7 +18,7 @@
                 <li><a href="index.html">HOME</a></li>
                 <li><a href="registerProject.html">작품등록</a></li>
                 <li><a href="capstone1.htnl">작품보기</a></li>
-                <li><a href="gaygayya.html">공지사항</a></li>
+                <li><a href="notice.html">공지사항</a></li>
                 <li><a href="login.html">LOGIN</a></li>
             </ul>
             <a href="#" id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></a>
