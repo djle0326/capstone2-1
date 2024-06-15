@@ -13,8 +13,8 @@ body {
     flex-direction: column; /* Flex direction to stack header, content, and footer vertically */
 }
 
-/* Login Container */
-#login {
+/* Find PW Container */
+#findpw {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,35 +42,35 @@ body {
     width: 100px;
 }
 
-/* Login Section */
-.login {
+/* Find PW Section */
+.findpw {
     padding: 20px;
     width: 100%;
 }
 
-.loginwrap {
+.findpwwrap {
     text-align: center;
 }
 
-.loginwrap h2 img {
+.findpwwrap h2 img {
     width: 150px;
     margin-bottom: 20px;
 }
 
-/* Login Area */
-.loginArea {
+/* Find PW Area */
+.findpwArea {
     margin-bottom: 20px;
     width: 100%;
 }
 
-.loginArea fieldset {
+.findpwArea fieldset {
     border: none;
     padding: 0;
     width: 100%;
 }
 
-.loginArea input[type="text"],
-.loginArea input[type="password"] {
+.findpwArea input[type="text"],
+.findpwArea input[type="email"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -79,7 +79,7 @@ body {
     box-sizing: border-box;
 }
 
-.loginbtn {
+.findpwbtn {
     display: inline-block;
     background: #ff6347; /* Orange color */
     color: #fff;
@@ -90,39 +90,10 @@ body {
     transition: background 0.3s;
 }
 
-.loginbtn:hover {
+.findpwbtn:hover {
     background: #e55330;
 }
 
-/* Find Area */
-.findArea,
-.registerArea {
-    text-align: left;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.findArea h5,
-.registerArea h5 {
-    color: #ff6347; /* Orange color */
-    font-size: 16px;
-}
-
-.findArea p,
-.registerArea p {
-    margin: 5px 0 10px;
-    font-size: 14px;
-    color: #777;
-}
-
-.findArea span,
-.registerArea span {
-    color: #e55330; /* Red color */
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-/* General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -137,4 +108,3 @@ a {
 ul {
     list-style: none;
 }
-
