@@ -41,6 +41,7 @@ public class PostsService {
         return posts.getId();
     }
 
+
     /* READ 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
     @Transactional(readOnly = true)
     public PostsDto.Response findById(Long id) {
@@ -49,6 +50,7 @@ public class PostsService {
 
         return new PostsDto.Response(posts);
     }
+
 
     /* UPDATE (dirty checking 영속성 컨텍스트)
      *  User 객체를 영속화시키고, 영속화된 User 객체를 가져와 데이터를 변경하면
