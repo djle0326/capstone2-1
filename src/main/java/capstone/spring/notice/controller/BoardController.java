@@ -48,7 +48,8 @@ public class BoardController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-        return "/main_board/main_board";
+//        return "/main_board/main_board";
+        return "boardlist";
     }
 
     @GetMapping("board/notice/view") // localhost:8080/board/view?id=1
