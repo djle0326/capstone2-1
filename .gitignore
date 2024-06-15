@@ -1,9 +1,19 @@
 HELP.md
 .gradle
 build/
+<<<<<<< HEAD
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+=======
+application.yml
+application-oauth.properties
+
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+application-oauth.properties
+>>>>>>> dongjun
 
 ### STS ###
 .apt_generated

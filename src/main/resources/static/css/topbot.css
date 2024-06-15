@@ -17,12 +17,27 @@ ul {
 .footer_warp,
 header,
 footer {
+<<<<<<< HEAD
 	width: 100%;
+=======
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header, footer {
+    position: relative;
+    left: 0;
+    right: 0;
+>>>>>>> dongjun
 }
 
 /* 상단 부분 */
 .header_warp {
     text-align: center;
+<<<<<<< HEAD
+=======
+    padding : 10px 0;
+>>>>>>> dongjun
 }
 
 .header_warp a {
@@ -33,6 +48,11 @@ footer {
 .nav_warp {
     position: relative;
     text-align: center;
+<<<<<<< HEAD
+=======
+    width: 100%;
+    box-shadow: 0 4px 2px -2px gray; 
+>>>>>>> dongjun
 }
 
 .nav_warp a {
@@ -45,7 +65,11 @@ footer {
     padding: 0 20px;
     height: 30px;
     position: absolute;
+<<<<<<< HEAD
     right: 250px;
+=======
+    right: -10%; 
+>>>>>>> dongjun
     top: 50%;
     transform: translateY(-50%);
 }
@@ -62,6 +86,7 @@ footer {
 
 /* 상단 마침 */
 
+<<<<<<< HEAD
 
 
 
@@ -69,6 +94,13 @@ footer {
 
 .footer_warp {
     margin: 100px 0;
+=======
+/* 하단 부분 */
+.footer_warp {
+    margin: 100px 0;
+    width: 100%;
+    box-sizing: border-box;
+>>>>>>> dongjun
 }
 
 .fir,
@@ -116,4 +148,8 @@ footer {
 .sec ul li p {
     font-size: 20px;
     font-weight: 900;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> dongjun
