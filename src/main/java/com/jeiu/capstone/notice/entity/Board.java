@@ -1,4 +1,4 @@
-package capstone.spring.notice.entity;
+package com.jeiu.capstone.notice.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

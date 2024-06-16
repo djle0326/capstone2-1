@@ -1,7 +1,7 @@
-package capstone.spring.notice.controller;
+package com.jeiu.capstone.notice.controller;
 
-import capstone.spring.notice.entity.Board;
-import capstone.spring.notice.service.BoardService;
+import com.jeiu.capstone.notice.entity.Board;
+import com.jeiu.capstone.notice.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

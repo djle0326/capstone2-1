@@ -26,3 +26,18 @@ CREATE TABLE `posts` (
     PRIMARY KEY (`id`),
     CONSTRAINT `FK_posts_user` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `notices` (
+     `id` BIGINT NOT NULL AUTO_INCREMENT,
+     `title` VARCHAR(500) NOT NULL,
+     `content` TEXT NOT NULL,
+     `view` INT NOT NULL DEFAULT 0,
+     `image_url` VARCHAR(255),
+     `pdf_url` VARCHAR(255),
+     `video_url` VARCHAR(255),
+     `user_id` BIGINT,
+     `created_date` DATETIME NOT NULL,
+     `modified_date` DATETIME NOT NULL,
+     PRIMARY KEY (`id`),
+     CONSTRAINT `FK_posts_user` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
