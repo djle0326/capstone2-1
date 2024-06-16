@@ -36,24 +36,13 @@ public class Posts extends BaseTimeEntity {
     @OrderBy("id asc") // 댓글 정렬
     private List<Comment> comments;
 
-
-    @Column(length = 255)
-    private String imageUrl;
-
-
-    @Column(length = 255)
-    private String pdfUrl;
-
-
-    @Column(length = 255)
-    private String videoUrl; //유튜브
+    @Column
+    private String fileUrl;
 
     /* 게시글 수정 */
-    public void update(String title, String content, String imageUrl, String pdfUrl, String videoUrl) {
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
-        this.imageUrl = imageUrl;
-        this.pdfUrl = pdfUrl;
-        this.videoUrl = videoUrl;
+
     }
 }

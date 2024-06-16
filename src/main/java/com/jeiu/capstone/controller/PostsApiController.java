@@ -1,5 +1,6 @@
 package com.jeiu.capstone.controller;
 
+import com.jeiu.capstone.application.FileStore;
 import com.jeiu.capstone.application.security.auth.LoginUser;
 import com.jeiu.capstone.application.PostsService;
 import com.jeiu.capstone.application.dto.PostsDto;
@@ -7,6 +8,10 @@ import com.jeiu.capstone.application.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.IOException;
 
 /**
  * REST API Controller
@@ -17,10 +22,11 @@ import org.springframework.web.bind.annotation.*;
 public class PostsApiController {
 
     private final PostsService postsService;
+    private final FileStore fileStore;
 
     /* CREATE */
     @PostMapping("/posts")
-    public ResponseEntity save(@RequestBody PostsDto.Request dto, @LoginUser UserDto.Response user) {
+    public ResponseEntity save(@ModelAttribute PostsDto.Request dto, @LoginUser UserDto.Response user) {
         return ResponseEntity.ok(postsService.save(dto, user.getNickname()));
     }
 

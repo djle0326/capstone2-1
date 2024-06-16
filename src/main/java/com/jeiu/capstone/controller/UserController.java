@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping("/auth/join") //localhost:8080/auth/join
     public String join() {
-        return "user/user-join";
+        return "/user/login/login";
     }
 
     /* 회원가입 */
@@ -61,7 +61,7 @@ public class UserController {
                 model.addAttribute(key, validatorResult.get(key));
             }
             /* 회원가입 페이지로 다시 리턴 */
-            return "/user/user-join";
+            return "/user/login/loginR";
         }
         userService.userJoin(dto);
         return "redirect:/auth/login";
@@ -73,7 +73,7 @@ public class UserController {
                         Model model) {
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-        return "/user/user-login";
+        return "/user/login/login";
     }
 
     /* Security에서 로그아웃은 기본적으로 POST지만, GET으로 우회 */
@@ -87,12 +87,12 @@ public class UserController {
         return "redirect:/";
     }
 
-    /* 회원정보 수정 */
-    @GetMapping("/modify")
-    public String modify(@LoginUser UserDto.Response user, Model model) {
-        if (user != null) {
-            model.addAttribute("user", user);
-        }
-        return "/user/user-modify";
-    }
+//    /* 회원정보 수정 */
+//    @GetMapping("/modify")
+//    public String modify(@LoginUser UserDto.Response user, Model model) {
+//        if (user != null) {
+//            model.addAttribute("user", user);
+//        }
+//        return "/user/user-modify";
+//    }
 }

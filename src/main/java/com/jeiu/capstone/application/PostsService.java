@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -20,19 +19,15 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
     private final UserRepository userRepository;
-    private final FileStorageService fileStorageService;
+
+
 
     /* CREATE */
     @Transactional
-    public Long save(PostsDto.Request dto, String nickname, MultipartFile imageFile) {
+    public Long save(PostsDto.Request dto, String nickname) {
         /* User 정보를 가져와 dto에 담아준다. */
         User user = userRepository.findByNickname(nickname);
         dto.setUser(user);
-
-        if (imageFile != null && !imageFile.isEmpty()) {
-            String imageUrl = fileStorageService.storeFile(imageFile);
-            dto.setImgUrl(imageUrl);
-        }
 
         log.info("PostsService save() 실행");
         Posts posts = dto.toEntity();
@@ -60,7 +55,7 @@ public class PostsService {
         Posts posts = postsRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
-        posts.update(dto.getTitle(), dto.getContent(), dto.getImgUrl(), dto.getPdfUrl(), dto.getVideoUrl());
+        posts.update(dto.getTitle(), dto.getContent());
     }
 
     /* DELETE */

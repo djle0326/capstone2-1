@@ -42,7 +42,7 @@ public class PostsServiceTest {
                 .user(user)
                 .build();
 
-        postsService.save(posts, user.getNickname());
+        postsService.save(posts, user.getNickname(), fileUrl);
 
         log.info(String.valueOf(posts));
     }
