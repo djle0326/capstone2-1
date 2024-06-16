@@ -1,58 +1,37 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const notices = [
-        {
-            title: "공지사항 제목 1",
-            content: "공지사항 내용 1입니다. 여기에 자세한 내용을 입력하세요.",
-            date: "2024-06-04"
-        },
-        {
-            title: "공지사항 제목 2",
-            content: "공지사항 내용 2입니다. 여기에 자세한 내용을 입력하세요.",
-            date: "2024-05-28"
-        }
-        // 더 많은 공지사항 추가 가능
-    ];
+    <script>
+        includeHTML();
 
-    const noticeList = document.querySelector('.notice-list');
+        // 사용자 역할에 따라 페이지 기능 제어
+        document.addEventListener("DOMContentLoaded", function() {
+            const userRole = 'user'; // 'user' 또는 'admin'으로 설정
 
-    function renderNotices() {
-        noticeList.innerHTML = '';
-        notices.forEach(notice => {
-            const noticeItem = document.createElement('div');
-            noticeItem.className = 'notice-item';
+            if (userRole === 'admin') {
+                // 관리자일 경우: 공지사항 등록 폼과 수정/삭제 버튼 활성화
+                document.querySelector('.admin-controls').style.display = 'block';
 
-            noticeItem.innerHTML = `
-                <h2>${notice.title}</h2>
-                <p>${notice.content}</p>
-                <span class="date">${notice.date}</span>
-            `;
+                // 공지사항 수정 버튼 이벤트 리스너
+                document.querySelectorAll('.edit-notice').forEach(button => {
+                    button.addEventListener('click', function() {
+                        alert('공지사항 수정 기능');
+                    });
+                });
 
-            noticeList.appendChild(noticeItem);
+                // 공지사항 삭제 버튼 이벤트 리스너
+                document.querySelectorAll('.delete-notice').forEach(button => {
+                    button.addEventListener('click', function() {
+                        alert('공지사항 삭제 기능');
+                    });
+                });
+
+                // 공지사항 등록 폼 제출 이벤트 리스너
+                document.getElementById('noticeForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('공지사항 등록 기능');
+                });
+
+            } else {
+                // 일반 회원일 경우: 공지사항 등록 폼과 수정/삭제 버튼 숨김
+                document.querySelector('.admin-controls').style.display = 'none';
+            }
         });
-    }
-
-    renderNotices();
-
-    // 관리자 여부 체크
-    const isAdmin = false; // 로그인 상태 및 권한 확인 로직 필요
-    const adminControls = document.querySelector('.admin-controls');
-
-    if (isAdmin) {
-        adminControls.style.display = 'block';
-    }
-
-    const noticeForm = document.getElementById('noticeForm');
-    noticeForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const title = document.getElementById('title').value;
-        const content = document.getElementById('content').value;
-        const date = new Date().toISOString().split('T')[0];
-
-        notices.push({ title, content, date });
-
-        renderNotices();
-
-        noticeForm.reset();
-    });
-});
+    </script>
