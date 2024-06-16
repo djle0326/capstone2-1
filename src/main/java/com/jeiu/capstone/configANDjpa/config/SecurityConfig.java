@@ -53,13 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring().antMatchers( "/css/**", "/js/**", "/img/**", "/media/**", "/error"); //엄청난 삽질../media/**추가(안하면 소셜로그인시 /media/main_logo.svg로 리다이렉트됨)
+                .ignoring().antMatchers( "/static/**"); //static파일 로드되게
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외처리 */
+                .csrf().ignoringAntMatchers("/api/**").ignoringAntMatchers("/items/**") /* REST API 사용 예외처리 */
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**").permitAll()

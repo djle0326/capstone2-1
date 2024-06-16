@@ -51,7 +51,7 @@ public class PostsIndexController {
         if (user != null) {
             model.addAttribute("user", user);
         }
-        return "posts/posts-write";
+        return "/board/project/upload";
     }
 
     /* 글 상세보기 */
