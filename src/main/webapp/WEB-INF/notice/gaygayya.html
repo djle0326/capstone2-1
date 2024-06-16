@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항</title>
-    <link rel="stylesheet" href="2.css">
-    <link rel="stylesheet" href="topbot.css">
-    <script defer src="2.js"></script>
+    <link rel="stylesheet" href="../../../static/css/notice.css" th:href="@{/css/notice.css}">
+    <link rel="stylesheet" href="../../../static/css/topbot.css" th:href="@{/css/topbot.css}">
+    <script src="https://kit.fontawesome.com/fff8ef1317.js" crossorigin="anonymous"></script>
+    <script src="../../../resources/static/js/includeHTML.js"></script>
+    <style>
+        /* 추가적인 CSS 스타일은 notice.css 파일에 작성 */
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header_warp">
-            <a href="#" class="main_logo">JEIU CAPSTONE</a>
-        </div>
-        <div class="nav_warp">
-            <ul class="nav">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="registerProject.html">작품등록</a></li>
-                <li><a href="capstone1.htnl">작품보기</a></li>
-                <li><a href="gaygayya.html">공지사항</a></li>
-                <li><a href="login.html">LOGIN</a></li>
-            </ul>
-            <a href="#" id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </div>
-    </header>
+    <div include-html="../../../resources/templates/module/header.html"></div>
 
     <main>
         <section class="notice-section">
             <h1>공지사항</h1>
             <div class="notice-list">
-                <!-- 공지사항 리스트가 추가해야됨 -->
+                <!-- 공지사항 리스트가 추가될 자리 -->
+                <div class="notice-item">
+                    <h2>공지사항 제목</h2>
+                    <p>공지사항 내용</p>
+                    <span class="date">2024-06-16</span>
+                    <!-- 관리자용 수정, 삭제 버튼 -->
+                    <div class="admin-controls">
+                        <button class="edit-notice">수정</button>
+                        <button class="delete-notice">삭제</button>
+                    </div>
+                </div>
             </div>
+            <!-- 관리자용 공지사항 작성 폼 -->
             <div class="admin-controls">
                 <h2>공지사항 작성</h2>
                 <form id="noticeForm">
@@ -47,30 +48,7 @@
     </main>
 
     <footer>
-        <div class="footer_warp">
-            <div class="fir">
-                <ul>
-                    <li><a href="#">이용 약관</a></li>
-                    <li><a href="#">개인정보보호정책</a></li>
-                </ul>
-                <a href="#" class="top_btn">TOP</a>
-            </div>
-            <div class="sec">
-                <a href="#"><img src="media/main_logo.svg"></a>
-                <ul>
-                    <li>
-                        <p>송림캠퍼스</p>
-                    </li>
-                    <li>22573 인천광역시 동구 재능로 178</li>
-                </ul>
-                <ul>
-                    <li>
-                        <p>송도캠퍼스</p>
-                    </li>
-                    <li>21987 인천광역시 연수구 송도교육로 111번길 15</li>
-                </ul>
-            </div>
-        </div>
+        <div include-html="../../../resources/templates/module/footer.html"></div>
     </footer>
 </body>
 </html>
