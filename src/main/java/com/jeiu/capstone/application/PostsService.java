@@ -1,6 +1,7 @@
 package com.jeiu.capstone.application;
 
 import com.jeiu.capstone.application.dto.PostsDto;
+import com.jeiu.capstone.configANDjpa.jpa.FileStore;
 import com.jeiu.capstone.domain.Posts;
 import com.jeiu.capstone.configANDjpa.jpa.PostsRepository;
 import com.jeiu.capstone.domain.User;
@@ -11,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,6 +23,7 @@ public class PostsService {
 
     private final PostsRepository postsRepository;
     private final UserRepository userRepository;
+    private final FileStore fileStore;
 
 
 
@@ -28,7 +33,6 @@ public class PostsService {
         /* User 정보를 가져와 dto에 담아준다. */
         User user = userRepository.findByNickname(nickname);
         dto.setUser(user);
-
         log.info("PostsService save() 실행");
         Posts posts = dto.toEntity();
         postsRepository.save(posts);
