@@ -1,19 +1,42 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
+=======
+/* Body Styling */
+>>>>>>> dongjun
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background: #f4f4f4;
+<<<<<<< HEAD
 }
 
 #login {
+=======
+>>>>>>> dongjun
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+<<<<<<< HEAD
 }
 
+=======
+    flex-direction: column; /* Flex direction to stack header, content, and footer vertically */
+}
+
+/* Login Container */
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 80px); /* Adjust height to exclude header and footer */
+}
+
+/* Wrapper */
+>>>>>>> dongjun
 .wrap {
     background: #fff;
     border-radius: 10px;
@@ -22,9 +45,16 @@ body {
     overflow: hidden;
 }
 
+<<<<<<< HEAD
 .visual {
     text-align: center;
     background: #ff6347; /* 주황색 */
+=======
+/* Visual Section */
+.visual {
+    text-align: center;
+    background: #ff6347; /* Orange color */
+>>>>>>> dongjun
     padding: 20px;
 }
 
@@ -32,8 +62,15 @@ body {
     width: 100px;
 }
 
+<<<<<<< HEAD
 .login {
     padding: 20px;
+=======
+/* Login Section */
+.login {
+    padding: 20px;
+    width: 100%;
+>>>>>>> dongjun
 }
 
 .loginwrap {
@@ -45,13 +82,24 @@ body {
     margin-bottom: 20px;
 }
 
+<<<<<<< HEAD
 .loginArea {
     margin-bottom: 20px;
+=======
+/* Login Area */
+.loginArea {
+    margin-bottom: 20px;
+    width: 100%;
+>>>>>>> dongjun
 }
 
 .loginArea fieldset {
     border: none;
     padding: 0;
+<<<<<<< HEAD
+=======
+    width: 100%;
+>>>>>>> dongjun
 }
 
 .loginArea input[type="text"],
@@ -66,7 +114,11 @@ body {
 
 .loginbtn {
     display: inline-block;
+<<<<<<< HEAD
     background: #ff6347; /* 주황색 */
+=======
+    background: #ff6347; /* Orange color */
+>>>>>>> dongjun
     color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -79,6 +131,7 @@ body {
     background: #e55330;
 }
 
+<<<<<<< HEAD
 .findArea {
     text-align: left;
     margin-top: 20px;
@@ -90,17 +143,42 @@ body {
 }
 
 .findArea p {
+=======
+/* Find Area */
+.findArea,
+.registerArea {
+    text-align: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.findArea h5,
+.registerArea h5 {
+    color: #ff6347; /* Orange color */
+    font-size: 16px;
+}
+
+.findArea p,
+.registerArea p {
+>>>>>>> dongjun
     margin: 5px 0 10px;
     font-size: 14px;
     color: #777;
 }
 
+<<<<<<< HEAD
 .findArea span {
     color: #e55330; /* 빨간색 */
+=======
+.findArea span,
+.registerArea span {
+    color: #e55330; /* Red color */
+>>>>>>> dongjun
     cursor: pointer;
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 .footer_warp {
     padding: 20px;
     background: #333;
@@ -139,6 +217,13 @@ body {
 * {
     margin: 0;
     padding: 0;
+=======
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+>>>>>>> dongjun
 }
 
 a {
@@ -150,6 +235,7 @@ ul {
     list-style: none;
 }
 
+<<<<<<< HEAD
 .header_warp,
 .nav_warp,
 .footer_warp,
@@ -157,3 +243,5 @@ header,
 footer {
 	width: 100%;
 }
+=======
+>>>>>>> dongjun
