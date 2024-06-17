@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -23,8 +23,8 @@
                     <input type="text" id="projectName" name="title" required>
                 </div>
                 <div class="form-group">
-                    <label for="authorName">등록자 이름</label>
-                    <input type="text" id="authorName" name="writer" required>
+                    <label for="authorName">작성자</label>
+                    <input type="hidden" id="authorName" name="writer" th:value="${user.nickname}" equired>
                 </div>
                 <div class="form-group">
                     <label for="projectDescription">작품 개요</label>
@@ -45,6 +45,20 @@
                 <button type="submit" class="submit-button">등록하기</button>
             </form>
         </section>
+
+
+        <div th:if="${user != null}">
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left">목록</a>
+            <div th:if="${writer}">
+                <a th:href="@{/posts/update/{id}(id=${id})}" role="button" class="btn btn-primary bi bi-pencil-square">수정</a>
+                <button type="button" onclick="" id="btn-delete" class="btn btn-danger bi bi-trash">삭제</button>
+            </div>
+        </div>
+        <div th:if="${user == null}">
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left">목록</a>
+        </div>
+
+
     </main>
 
     <div class="footer-container" include-html="../../../templates/module/footer.html"></div>

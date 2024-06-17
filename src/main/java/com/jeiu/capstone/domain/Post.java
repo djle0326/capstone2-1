@@ -39,6 +39,9 @@ public class Post extends BaseTimeEntity {
     @Column
     private String fileUrl;
 
+    @Column(name = "team_mem")
+    private String teamMem;
+
     /* 게시글 수정 */
     public void update(String title, String content) {
         this.title = title;
