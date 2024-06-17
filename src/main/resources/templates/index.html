@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="utf-8">
-    <title>JEIU 캡스톤 프로젝트</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/topbot.css">
-    <script src="https://kit.fontawesome.com/fff8ef1317.js" crossorigin="anonymous"></script>
-    <script src="/static/js/includeHTML.js"></script>
-</head>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<th:block layout:fragment="content">
 <body>
     <div class="header-container" include-html="module/header.html"></div>
 

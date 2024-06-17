@@ -51,9 +51,9 @@ public class PostsIndexController {
             Pageable pageable, @LoginUser UserDto.Response user) {
         Page<Post> list = postService.pageList(pageable);
 
-        if (user != null) {
-            model.addAttribute("user", user);
-        }
+//        if (user != null) {
+//            model.addAttribute("user", user);
+//        }
 
         model.addAttribute("posts", list);
         model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
@@ -63,6 +63,7 @@ public class PostsIndexController {
 
         return "index";
     }
+
     /* 글 작성 */
     @GetMapping("/posts/write")
     public String write(@LoginUser UserDto.Response user, Model model) {

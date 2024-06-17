@@ -28,8 +28,6 @@ public class PostDto {
         private int view;
         private User user;
         private String fileUrl;
-        private String filename;
-        private String yt_url;
         private String teamMem;
 
         /* Dto -> Entity */
@@ -42,8 +40,6 @@ public class PostDto {
                     .view(0)
                     .user(user)
                     .fileUrl(fileUrl)
-                    .filename(filename)
-                    .yt_url(yt_url)
                     .teamMem(teamMem)
                     .build();
 

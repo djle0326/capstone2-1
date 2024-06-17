@@ -53,10 +53,10 @@ public class UserController {
     @PostMapping("/auth/joinProc")
     public String joinProc(@Valid UserDto.Request dto, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            // 유효성 검사 실패 메시지 로그 출력
-//            for (FieldError error : errors.getFieldErrors()) {
-//                System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage());
-//            }
+//             유효성 검사 실패 메시지 로그 출력
+            for (FieldError error : errors.getFieldErrors()) {
+                System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage());
+            }
 
              /* 회원가입 실패시 입력 데이터 값을 유지 */
             model.addAttribute("userDto", dto);

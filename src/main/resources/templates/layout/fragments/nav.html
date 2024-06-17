@@ -7,13 +7,20 @@
 </div>
 <div class="nav_warp">
     <ul class="nav">
-        <li><a href="/static">HOME</a></li>
+        <li><a href="/">HOME</a></li>
         <li><a href="/posts/write">작품등록</a></li>
-        <li><a href="/static?page=1">작품보기</a></li>
+        <li><a href="/posts/read/">작품보기</a></li>
         <li><a href="">공지사항</a></li>
-        <li><a href="/auth/login">LOGIN</a></li>
+
+        <li th:if="user==null">
+            <a href="/auth/login">LOGIN</a>
+        </li>
+
+        <li th:if="${user != null}">
+            <a href="/auth/logout">LOGOUT</a>
+        </li>
+
     </ul>
     <a href="#" id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></a>
 </div>
 </th:block>
-</html>
