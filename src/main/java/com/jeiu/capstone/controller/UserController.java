@@ -46,7 +46,7 @@ public class UserController {
 
     @GetMapping("/auth/join") //localhost:8080/auth/join
     public String join() {
-        return "/user/login/loginR";
+        return "user/login/loginR";
     }
 
     /* 회원가입 */

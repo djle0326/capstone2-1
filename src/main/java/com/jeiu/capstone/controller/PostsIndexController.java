@@ -87,7 +87,7 @@ public class PostsIndexController {
 
         postService.updateView(id); // views ++
         model.addAttribute("posts", dto);
-        return "posts/posts-read";
+        return "/board/project/detail";
     }
 
     @GetMapping("/posts/update/{id}")

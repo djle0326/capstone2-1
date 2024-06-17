@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="navLayout">
+
+    <div class="header_warp">
+    <a href="/static" class="main_logo">JEIU CAPSTONE</a>
+</div>
+<div class="nav_warp">
+    <ul class="nav">
+        <li><a href="/static">HOME</a></li>
+        <li><a href="/posts/write">작품등록</a></li>
+        <li><a href="/static?page=1">작품보기</a></li>
+        <li><a href="">공지사항</a></li>
+        <li><a href="/auth/login">LOGIN</a></li>
+    </ul>
+    <a href="#" id="search_icon"><i class="fa-solid fa-magnifying-glass"></i></a>
+</div>
+</th:block>
+</html>
