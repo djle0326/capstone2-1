@@ -53,13 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
-                .ignoring().antMatchers( "/static/**"); //static파일 로드되게
+                .ignoring().antMatchers( "/css/**", "/js/**", "/img/**"); //static파일 로드되게
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().ignoringAntMatchers("/api/**").ignoringAntMatchers("/items/**") /* REST API 사용 예외처리 */
+                .csrf().ignoringAntMatchers("/api/**") /* REST API 사용 예외처리 */
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/auth/**", "/posts/read/**", "/posts/search/**").permitAll()
@@ -69,7 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/auth/login")
                 .loginProcessingUrl("/auth/loginProc")
                 .failureHandler(customFailureHandler)
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
