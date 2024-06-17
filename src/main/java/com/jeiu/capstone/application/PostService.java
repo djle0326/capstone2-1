@@ -1,7 +1,7 @@
 package com.jeiu.capstone.application;
 
 import com.jeiu.capstone.application.dto.PostDto;
-import com.jeiu.capstone.configANDjpa.jpa.FileStore;
+//import com.jeiu.capstone.configANDjpa.jpa.FileStore;
 import com.jeiu.capstone.domain.Post;
 import com.jeiu.capstone.configANDjpa.jpa.PostRepository;
 import com.jeiu.capstone.domain.User;
@@ -21,7 +21,7 @@ public class PostService {
     //싱글톤
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    private final FileStore fileStore;
+//    private final FileStore fileStore;
 
 
     /* CREATE */
@@ -87,5 +87,6 @@ public class PostService {
         Page<Post> postsList = postRepository.findByTitleContaining(keyword, pageable);
         return postsList;
     }
+
 }
 

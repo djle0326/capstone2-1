@@ -70,7 +70,8 @@ public class PostDto {
             this.createdDate = post.getCreatedDate();
             this.modifiedDate = post.getModifiedDate();
             this.view = post.getView();
-            this.userId = post.getUser().getId();
+//            this.userId = post.getUser().getId();
+            this.userId = (post.getUser() != null) ? post.getUser().getId() : null;
             this.comments = post.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }

@@ -3,6 +3,7 @@ package com.jeiu.capstone.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,6 +31,9 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     /* 회원정보 수정 */
     public void modify(String nickname, String password) {
