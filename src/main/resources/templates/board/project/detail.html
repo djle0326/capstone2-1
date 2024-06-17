@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>JEIU 캡스톤 프로젝트 - 프로젝트 보기</title>
@@ -18,11 +18,11 @@
             <div class="project-details">
                 <div class="author-info">
                     <i class="fas fa-user-circle"></i>
-                    <span id="authorName">NAME</span>
+                    <span id="authorName" th:text="${post.writer}">NAME</span>
                 </div>
                 <div class="project-overview">
                     <h2>작품 개요</h2>
-                    <p id="projectDescription">작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요</p>
+                    <p id="projectDescription" th:text="${post.content}">작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요작품개요</p>
                 </div>
                 <div class="project-poster">
                     <h2>발표 자료</h2>

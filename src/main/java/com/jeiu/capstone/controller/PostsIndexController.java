@@ -28,6 +28,24 @@ public class PostsIndexController {
 
     private final PostService postService;
 
+
+    @GetMapping("/posts/list")
+    public String postsList(Model model, @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<Post> list = postService.pageList(pageable);
+
+        int nowPage = list.getPageable().getPageNumber() + 1;
+        int startPage = Math.max(nowPage - 4, 1);
+        int endPage = Math.min(nowPage + 5, list.getTotalPages());
+
+        model.addAttribute("list", postService.pageList(pageable));
+        model.addAttribute("nowPage", nowPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+
+        return "board/project/list";
+    }
+
+
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
             Pageable pageable, @LoginUser UserDto.Response user) {
@@ -56,7 +74,7 @@ public class PostsIndexController {
 
     /* 글 상세보기 */
     @GetMapping("/posts/read/{id}")
-    public String read(@PathVariable Long id, @LoginUser UserDto.Response user, Model model) {
+    public String read(@PathVariable Long id, Model model) {
         PostDto.Response dto = postService.findById(id);
         List<CommentDto.Response> comments = dto.getComments();
 
@@ -67,27 +85,28 @@ public class PostsIndexController {
         }
 
         /* 사용자 관련 */
-        if (user != null) {
-            model.addAttribute("user", user);
+//        if (user != null) {
+//            model.addAttribute("user", user);
+//
+//            /* 게시글 작성자 본인인지 확인 */
+//            if (dto.getUserId().equals(user.getId())) {
+//                model.addAttribute("writer", true);
+//            }
+//
+//            /* 댓글 작성자 본인인지 확인 */
+//            if (comments.stream().anyMatch(s -> s.getUserId().equals(user.getId()))) {
+//                model.addAttribute("isWriter", true);
+//            }
+///*            for (int i = 0; i < comments.size(); i++) {
+//                boolean isWriter = comments.get(i).getUserId().equals(user.getId());
+//                model.addAttribute("isWriter",isWriter);
+//            }*/
+//        }
 
-            /* 게시글 작성자 본인인지 확인 */
-            if (dto.getUserId().equals(user.getId())) {
-                model.addAttribute("writer", true);
-            }
 
-            /* 댓글 작성자 본인인지 확인 */
-            if (comments.stream().anyMatch(s -> s.getUserId().equals(user.getId()))) {
-                model.addAttribute("isWriter", true);
-            }
-/*            for (int i = 0; i < comments.size(); i++) {
-                boolean isWriter = comments.get(i).getUserId().equals(user.getId());
-                model.addAttribute("isWriter",isWriter);
-            }*/
-        }
-
+        model.addAttribute("post", dto);
         postService.updateView(id); // views ++
-        model.addAttribute("posts", dto);
-        return "posts/posts-read";
+        return "board/project/detail";
     }
 
     @GetMapping("/posts/update/{id}")

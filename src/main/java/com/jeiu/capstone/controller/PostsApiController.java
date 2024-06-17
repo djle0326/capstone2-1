@@ -6,6 +6,7 @@ import com.jeiu.capstone.application.dto.PostDto;
 import com.jeiu.capstone.application.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RequestMapping("/api")//공통 URI지정(ex: /api/posts)
 @RequiredArgsConstructor
-@RestController  //JSON으로 응답되게 하는거
+@Controller  //JSON으로 응답되게 하는거
 public class PostsApiController {
 
     private final PostService postService;
@@ -32,8 +33,18 @@ public class PostsApiController {
 
     /* CREATE */
     @PostMapping("/posts") //POST방식이라는 의미
-    public ResponseEntity save(@RequestBody PostDto.Request dto, @LoginUser UserDto.Response user) {
-        return ResponseEntity.ok(postService.save(dto, user.getNickname())); //HTTP상태 200 return
+    public String save(@RequestParam("writer") String writer,
+                                  @RequestParam("title") String title,
+                                  @RequestParam("content") String content,
+//                                  @RequestParam("projectTechnologies") String projectTechnologies,
+                                  @LoginUser UserDto.Response user) {
+        PostDto.Request dto = new PostDto.Request();
+        dto.setWriter(writer);
+        dto.setTitle(title);
+        dto.setContent(content);
+        postService.save(dto, user.getNickname());
+//        return ResponseEntity.ok(postService.save(dto, user.getNickname())); //HTTP상태 200 return
+        return "redirect:/posts/list";
     }
 
     /* READ */
