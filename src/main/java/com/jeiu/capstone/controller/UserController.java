@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -52,6 +53,11 @@ public class UserController {
     @PostMapping("/auth/joinProc")
     public String joinProc(@Valid UserDto.Request dto, Errors errors, Model model) {
         if (errors.hasErrors()) {
+            // 유효성 검사 실패 메시지 로그 출력
+//            for (FieldError error : errors.getFieldErrors()) {
+//                System.out.println("Field: " + error.getField() + ", Error: " + error.getDefaultMessage());
+//            }
+
              /* 회원가입 실패시 입력 데이터 값을 유지 */
             model.addAttribute("userDto", dto);
 
@@ -59,10 +65,11 @@ public class UserController {
             Map<String, String> validatorResult = userService.validateHandling(errors);
             for (String key : validatorResult.keySet()) {
                 model.addAttribute(key, validatorResult.get(key));
+                System.out.println("key = " + key + ", value = " + validatorResult.get(key));
             }
 
             /* 회원가입 페이지로 다시 리턴 */
-            return "redirect:/";
+            return "redirect:/auth/join";
         }
         userService.userJoin(dto);
         return "redirect:/auth/login";
