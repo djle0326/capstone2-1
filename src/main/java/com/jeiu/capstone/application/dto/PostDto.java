@@ -1,6 +1,6 @@
 package com.jeiu.capstone.application.dto;
 
-import com.jeiu.capstone.domain.Posts;
+import com.jeiu.capstone.domain.Post;
 import com.jeiu.capstone.domain.User;
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * request, response DTO 클래스를 하나로 묶어 InnerStaticClass로 한 번에 관리
  */
-public class PostsDto {
+public class PostDto {
 
 
     /** 게시글의 등록과 수정을 처리할 요청(Request) 클래스 */
@@ -30,8 +30,8 @@ public class PostsDto {
         private String fileUrl;
 
         /* Dto -> Entity */
-        public Posts toEntity() {
-            Posts posts = Posts.builder()
+        public Post toEntity() {
+            Post post = Post.builder()
                     .id(id)
                     .title(title)
                     .writer(writer)
@@ -41,7 +41,7 @@ public class PostsDto {
                     .fileUrl(fileUrl)
                     .build();
 
-            return posts;
+            return post;
         }
     }
 
@@ -62,16 +62,16 @@ public class PostsDto {
         private final List<CommentDto.Response> comments;
 
         /* Entity -> Dto*/
-        public Response(Posts posts) {
-            this.id = posts.getId();
-            this.title = posts.getTitle();
-            this.writer = posts.getWriter();
-            this.content = posts.getContent();
-            this.createdDate = posts.getCreatedDate();
-            this.modifiedDate = posts.getModifiedDate();
-            this.view = posts.getView();
-            this.userId = posts.getUser().getId();
-            this.comments = posts.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList());
+        public Response(Post post) {
+            this.id = post.getId();
+            this.title = post.getTitle();
+            this.writer = post.getWriter();
+            this.content = post.getContent();
+            this.createdDate = post.getCreatedDate();
+            this.modifiedDate = post.getModifiedDate();
+            this.view = post.getView();
+            this.userId = post.getUser().getId();
+            this.comments = post.getComments().stream().map(CommentDto.Response::new).collect(Collectors.toList());
         }
     }
 }

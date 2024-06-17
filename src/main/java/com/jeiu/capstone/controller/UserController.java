@@ -45,7 +45,7 @@ public class UserController {
 
     @GetMapping("/auth/join") //localhost:8080/auth/join
     public String join() {
-        return "/user/login/login";
+        return "/user/login/loginR";
     }
 
     /* 회원가입 */
@@ -60,8 +60,9 @@ public class UserController {
             for (String key : validatorResult.keySet()) {
                 model.addAttribute(key, validatorResult.get(key));
             }
+
             /* 회원가입 페이지로 다시 리턴 */
-            return "/user/login/loginR";
+            return "redirect:/";
         }
         userService.userJoin(dto);
         return "redirect:/auth/login";

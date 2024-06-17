@@ -32,8 +32,8 @@ public class Comment {
     private String modifiedDate;
 
     @ManyToOne
-    @JoinColumn(name = "posts_id")
-    private Posts posts;
+    @JoinColumn(name = "post_id")
+    private Post post;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

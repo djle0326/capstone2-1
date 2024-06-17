@@ -3,8 +3,8 @@ package com.jeiu.capstone.application;
 import com.jeiu.capstone.application.dto.CommentDto;
 import com.jeiu.capstone.domain.Comment;
 import com.jeiu.capstone.configANDjpa.jpa.CommentRepository;
-import com.jeiu.capstone.domain.Posts;
-import com.jeiu.capstone.configANDjpa.jpa.PostsRepository;
+import com.jeiu.capstone.domain.Post;
+import com.jeiu.capstone.configANDjpa.jpa.PostRepository;
 import com.jeiu.capstone.domain.User;
 import com.jeiu.capstone.configANDjpa.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,17 +20,17 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
     private final UserRepository userRepository;
-    private final PostsRepository postsRepository;
+    private final PostRepository postRepository;
 
     /* CREATE */
     @Transactional
     public Long save(Long id, String nickname, CommentDto.Request dto) {
         User user = userRepository.findByNickname(nickname);
-        Posts posts = postsRepository.findById(id).orElseThrow(() ->
+        Post post = postRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다. " + id));
 
         dto.setUser(user);
-        dto.setPosts(posts);
+        dto.setPost(post);
 
         Comment comment = dto.toEntity();
         commentRepository.save(comment);
@@ -41,16 +41,16 @@ public class CommentService {
     /* READ */
     @Transactional(readOnly = true)
     public List<CommentDto.Response> findAll(Long id) {
-        Posts posts = postsRepository.findById(id).orElseThrow(() ->
+        Post post = postRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
-        List<Comment> comments = posts.getComments();
+        List<Comment> comments = post.getComments();
         return comments.stream().map(CommentDto.Response::new).collect(Collectors.toList());
     }
 
     /* UPDATE */
     @Transactional
-    public void update(Long postsId, Long id, CommentDto.Request dto) {
-        Comment comment = commentRepository.findByPostsIdAndId(postsId, id).orElseThrow(() ->
+    public void update(Long postId, Long id, CommentDto.Request dto) {
+        Comment comment = commentRepository.findByPostIdAndId(postId, id).orElseThrow(() ->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다. " + id));
 
         comment.update(dto.getComment());
@@ -58,8 +58,8 @@ public class CommentService {
 
     /* DELETE */
     @Transactional
-    public void delete(Long postsId, Long id) {
-        Comment comment = commentRepository.findByPostsIdAndId(postsId, id).orElseThrow(() ->
+    public void delete(Long postId, Long id) {
+        Comment comment = commentRepository.findByPostIdAndId(postId, id).orElseThrow(() ->
                 new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id));
 
         commentRepository.delete(comment);

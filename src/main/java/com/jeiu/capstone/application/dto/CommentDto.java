@@ -1,7 +1,7 @@
 package com.jeiu.capstone.application.dto;
 
 import com.jeiu.capstone.domain.Comment;
-import com.jeiu.capstone.domain.Posts;
+import com.jeiu.capstone.domain.Post;
 import com.jeiu.capstone.domain.User;
 import lombok.*;
 
@@ -24,7 +24,7 @@ public class CommentDto {
         private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
         private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
         private User user;
-        private Posts posts;
+        private Post post;
         /* Dto -> Entity */
         public Comment toEntity() {
             Comment comments = Comment.builder()
@@ -33,7 +33,7 @@ public class CommentDto {
                     .createdDate(createdDate)
                     .modifiedDate(modifiedDate)
                     .user(user)
-                    .posts(posts)
+                    .post(post)
                     .build();
 
             return comments;
@@ -54,7 +54,7 @@ public class CommentDto {
         private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
         private String nickname;
         private Long userId;
-        private Long postsId;
+        private Long postId;
         /* Entity -> Dto*/
         public Response(Comment comment) {
             this.id = comment.getId();
@@ -63,7 +63,7 @@ public class CommentDto {
             this.modifiedDate = comment.getModifiedDate();
             this.nickname = comment.getUser().getNickname();
             this.userId = comment.getUser().getId();
-            this.postsId = comment.getPosts().getId();
+            this.postId = comment.getPost().getId();
         }
     }
 }

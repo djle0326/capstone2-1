@@ -2,10 +2,10 @@ package com.jeiu.capstone.controller;
 
 import com.jeiu.capstone.application.security.auth.LoginUser;
 import com.jeiu.capstone.application.dto.CommentDto;
-import com.jeiu.capstone.application.dto.PostsDto;
+import com.jeiu.capstone.application.dto.PostDto;
 import com.jeiu.capstone.application.dto.UserDto;
-import com.jeiu.capstone.domain.Posts;
-import com.jeiu.capstone.application.PostsService;
+import com.jeiu.capstone.domain.Post;
+import com.jeiu.capstone.application.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -26,12 +26,12 @@ import java.util.List;
 @Controller
 public class PostsIndexController {
 
-    private final PostsService postsService;
+    private final PostService postService;
 
     @GetMapping("/")                 /* default page = 0, size = 10  */
     public String index(Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
             Pageable pageable, @LoginUser UserDto.Response user) {
-        Page<Posts> list = postsService.pageList(pageable);
+        Page<Post> list = postService.pageList(pageable);
 
         if (user != null) {
             model.addAttribute("user", user);
@@ -57,7 +57,7 @@ public class PostsIndexController {
     /* 글 상세보기 */
     @GetMapping("/posts/read/{id}")
     public String read(@PathVariable Long id, @LoginUser UserDto.Response user, Model model) {
-        PostsDto.Response dto = postsService.findById(id);
+        PostDto.Response dto = postService.findById(id);
         List<CommentDto.Response> comments = dto.getComments();
 
 
@@ -85,14 +85,14 @@ public class PostsIndexController {
             }*/
         }
 
-        postsService.updateView(id); // views ++
+        postService.updateView(id); // views ++
         model.addAttribute("posts", dto);
         return "posts/posts-read";
     }
 
     @GetMapping("/posts/update/{id}")
     public String update(@PathVariable Long id, @LoginUser UserDto.Response user, Model model) {
-        PostsDto.Response dto = postsService.findById(id);
+        PostDto.Response dto = postService.findById(id);
         if (user != null) {
             model.addAttribute("user", user);
         }
@@ -104,7 +104,7 @@ public class PostsIndexController {
     @GetMapping("/posts/search")
     public String search(String keyword, Model model, @PageableDefault(sort = "id", direction = Sort.Direction.DESC)
             Pageable pageable, @LoginUser UserDto.Response user) {
-        Page<Posts> searchList = postsService.search(keyword, pageable);
+        Page<Post> searchList = postService.search(keyword, pageable);
 
         if (user != null) {
             model.addAttribute("user", user);
