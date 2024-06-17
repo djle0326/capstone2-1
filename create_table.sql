@@ -11,7 +11,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE `posts` (
+CREATE TABLE `post` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(500) NOT NULL,
     `content` TEXT NOT NULL,
@@ -24,3 +24,14 @@ CREATE TABLE `posts` (
     PRIMARY KEY (`id`),
     CONSTRAINT `FK_posts_user` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE Comments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    comment TEXT NOT NULL,
+    created_date VARCHAR(255) NOT NULL,
+    modified_date VARCHAR(255) NOT NULL,
+    post_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES post(id),
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);

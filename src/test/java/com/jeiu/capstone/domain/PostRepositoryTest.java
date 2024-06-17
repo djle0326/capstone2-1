@@ -1,6 +1,6 @@
 package com.jeiu.capstone.domain;
 
-import com.jeiu.capstone.configANDjpa.jpa.PostsRepository;
+import com.jeiu.capstone.configANDjpa.jpa.PostRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,19 +15,19 @@ import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest
 @Log4j2
-public class PostsRepositoryTest {
+public class PostRepositoryTest {
 
     @Autowired
-    private PostsRepository postsRepository;
+    private PostRepository postRepository;
 
     @BeforeEach
     public void reset() {
-        postsRepository.deleteAll();
+        postRepository.deleteAll();
     }
 
     @AfterEach
     public void clear() {
-        postsRepository.deleteAll();
+        postRepository.deleteAll();
     }
 
     @Test
@@ -35,15 +35,15 @@ public class PostsRepositoryTest {
         String title = "제목 입니다.";
         String content = "내용 입니다";
 
-        postsRepository.save(Posts.builder().title(title).content(content).writer("coco").build());
+        postRepository.save(Post.builder().title(title).content(content).writer("coco").build());
 
-        List<Posts> postsList = postsRepository.findAll();
+        List<Post> postList = postRepository.findAll();
 
-        Posts posts = postsList.get(0);
+        Post post = postList.get(0);
 
-        assertThat(posts.getTitle()).isEqualTo(title);
-        assertThat(posts.getContent()).isEqualTo(content);
+        assertThat(post.getTitle()).isEqualTo(title);
+        assertThat(post.getContent()).isEqualTo(content);
 
-        log.info(posts);
+        log.info(post);
     }
 }

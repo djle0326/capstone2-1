@@ -26,16 +26,16 @@ public class CommentRepositoryTest {
     public void 게시글_댓글_생성_조회() {
         String content = "댓글 입니다.";
 
-        Posts posts = Posts.builder().id(1L).build();
+        Post post = Post.builder().id(1L).build();
         User user = User.builder().id(1L).build();
 
             commentRepository.save(Comment.builder()
                     .comment(content)
                     .user(user)
-                    .posts(posts)
+                    .post(post)
                     .build());
 
-            List<Comment> comments = commentRepository.getCommentByPostsOrderById(posts);
+            List<Comment> comments = commentRepository.getCommentByPostOrderById(post);
 
             Comment comment = comments.get(0);
 
@@ -47,12 +47,12 @@ public class CommentRepositoryTest {
         IntStream.rangeClosed(1, 20).forEach(i -> {
             long id = (long)(Math.random() * 22) + 1;
 
-            Posts posts = Posts.builder().id(id).build();
+            Post post = Post.builder().id(id).build();
             User user = User.builder().id(id).build();
             Comment comment = Comment.builder()
                     .comment(i + "번째 댓글입니다.")
                     .user(user)
-                    .posts(posts)
+                    .post(post)
                     .build();
 
             commentRepository.save(comment);

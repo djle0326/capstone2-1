@@ -1,7 +1,7 @@
 package com.jeiu.capstone.configANDjpa.jpa;
 
 import com.jeiu.capstone.domain.Comment;
-import com.jeiu.capstone.domain.Posts;
+import com.jeiu.capstone.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     /* 게시글 댓글 목록 가져오기 */
-    List<Comment> getCommentByPostsOrderById(Posts posts);
+    List<Comment> getCommentByPostOrderById(Post post);
 
-    Optional<Comment> findByPostsIdAndId(Long postsId, Long id);
+    Optional<Comment> findByPostIdAndId(Long postId, Long id);
 }

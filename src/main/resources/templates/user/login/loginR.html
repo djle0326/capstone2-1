@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
@@ -14,19 +14,24 @@
     <div id="register">
         <div class="wrap">
             <h1>회원가입</h1>
-            <form id="RegisterForm" name="RegisterForm" method="post" action="/user/registerProcess.face">
+            <form id="RegisterForm" name="RegisterForm" method="post" action="/auth/joinProc">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
                 <label for="reg_id">아이디</label>
-                <input type="text" id="reg_id" name="userId" required>
-                
+                <input type="text" id="reg_id" name="username">
+
                 <label for="reg_pw">비밀번호</label>
-                <input type="password" id="reg_pw" name="password" required>
-                
+                <input type="password" id="reg_pw" name="password">
+
                 <label for="reg_pw_confirm">비밀번호 확인</label>
-                <input type="password" id="reg_pw_confirm" name="password_confirm" required>
-                
+                <input type="password" id="reg_pw_confirm" name="password_confirm">
+
                 <label for="email">이메일</label>
-                <input type="email" id="email" name="email" required>
-                
+                <input type="email" id="email" name="email">
+
+                <label for="nickname">닉네임</label>
+                <input type="text" id="nickname" name="nickname">
+
                 <button type="submit">회원가입</button>
             </form>
         </div>
