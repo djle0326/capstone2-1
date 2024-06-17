@@ -10,6 +10,7 @@ import java.util.List;
 @Builder //빌더패턴
 @Getter
 @Entity //JPA가 관리한다는 의미
+@Data
 public class Post extends BaseTimeEntity {
 
     @Id //pk
@@ -38,6 +39,15 @@ public class Post extends BaseTimeEntity {
 
     @Column
     private String fileUrl;
+
+    @Column
+    private String filename;
+
+    @Column
+    private String yt_url;
+
+    @Column
+    private String teamMem;
 
     /* 게시글 수정 */
     public void update(String title, String content) {

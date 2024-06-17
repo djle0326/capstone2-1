@@ -8,10 +8,12 @@ import com.jeiu.capstone.domain.User;
 import com.jeiu.capstone.configANDjpa.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
     //싱글톤
+    @Autowired
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 //    private final FileStore fileStore;
@@ -37,6 +40,9 @@ public class PostService {
         return post.getId(); //받아온 ID를 Return한다
     }
 
+    public void update(Post post, MultipartFile file) {
+        postRepository.save(post);
+    }
 
     /* READ 게시글 리스트 조회 readOnly 속성으로 조회속도 개선 */
     @Transactional(readOnly = true)
@@ -45,6 +51,11 @@ public class PostService {
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id: " + id));
 
         return new PostDto.Response(post);
+    }
+
+
+    public Post postView(Long id) {
+        return postRepository.findById(id).get();
     }
 
 
@@ -61,8 +72,8 @@ public class PostService {
 
     /* DELETE */
     @Transactional
-    public void delete(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() ->
+    public void delete(Integer id) {
+        Post post = postRepository.findById(Long.valueOf(id)).orElseThrow(() ->
                 new IllegalArgumentException("해당 게시글이 존재하지 않습니다. id=" + id));
 
         postRepository.delete(post);
@@ -87,6 +98,7 @@ public class PostService {
         Page<Post> postsList = postRepository.findByTitleContaining(keyword, pageable);
         return postsList;
     }
-
 }
+
+
 

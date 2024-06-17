@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +17,7 @@
     <main style="margin-top: 2%;">
         <section class="register-section">
             <h1>캡스톤 프로젝트</h1>
-            <form action="/api/posts" method="post" enctype="multipart/form-data" id="register-form">
+            <form th:action="@{/api/posts/update/{id}(id = ${posts.id})}" method="post" enctype="multipart/form-data" id="register-form">
                 <div class="form-group">
                     <label for="projectName">작품 이름</label>
                     <input type="text" id="projectName" name="title" required>
@@ -46,7 +46,8 @@
 <!--                    <label for="video">발표 자료 (영상 파일)</label>-->
 <!--                    <input type="file" id="video" name="video" accept="video/*">-->
 <!--                </div>-->
-                <button type="submit" class="submit-button">등록하기</button>
+                <input type="hidden" name="_method" value="put"/>
+                <button type="submit" class="submit-button">수정하기</button>
             </form>
         </section>
     </main>

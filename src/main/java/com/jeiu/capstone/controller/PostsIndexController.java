@@ -117,7 +117,7 @@ public class PostsIndexController {
         }
         model.addAttribute("posts", dto);
 
-        return "posts/posts-update";
+        return "board/project/modify";
     }
 
     @GetMapping("/posts/search")
@@ -136,6 +136,12 @@ public class PostsIndexController {
         model.addAttribute("hasPrev", searchList.hasPrevious());
 
         return "posts/posts-search";
+    }
+
+    @GetMapping("/posts/delete")
+    public String delete(Integer id) {
+        postService.delete(id);
+        return "redirect:posts/list";
     }
 }
 

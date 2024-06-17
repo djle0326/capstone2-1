@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>JEIU 캡스톤 프로젝트 - 프로젝트 보기</title>
@@ -19,7 +20,7 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
                 <div class="project-overview">
-                    <h2>작품 개요</h2>
+                    <h2 th:text="${post.content}">작품 개요</h2>
                 </div>
                 <div class="project-poster">
                     <h2>발표 자료</h2>
@@ -47,6 +48,8 @@
                     <h2>댓글</h2>
                     <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
                     <button id="submitComment">댓글 달기</button>
+                    <button type="button" th:onclick="|location.href='@{/posts/delete(id=${post.id})}'|">삭제하기</button>
+                    <button type="button" th:onclick="|location.href='@{/posts/update/{id}(id=${post.id})}'|">수정하기</button>
                     <div id="commentsList">
                         <!-- 댓글 리스트가 여기 표시됩니다. -->
                     </div>
